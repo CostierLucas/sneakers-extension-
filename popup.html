@@ -1,0 +1,170 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <link rel="stylesheet" href="style.css">
+  </head>
+  <body>
+    <div class="menu">
+      <div id="nav-profile" class="active">
+        <a href="#"> profile</a>
+      </div>
+      <div id="nav-courir">
+        <a href="#"> Courir</a>
+      </div>
+      <div id="nav-solebox">
+        <a href="#"> Solebox</a>
+      </div>
+      <div id="nav-snipes" class="invailable">
+        <a href="#"> Snipes</a>
+      </div>
+      <div id="nav-zalando" class="invailable">
+        <a href="#"> Zalando</a>
+      </div>
+    </div>
+  
+    <div id="user" id="check">
+      <form id="profile" action="">
+        <label for="firstname"> First name : </label>
+        <br>
+        <input type="text" id="firstname" required>
+        <br>
+        <label for="lastname"> Last name : </label>
+        <br>
+        <input type="text" id="lastname" required>
+        <br>
+        <label for="Adress"> Address : </label>
+        <br>
+        <input type="text" placeholder="Street" id="address" required>
+        <br>
+        <label for="postalcode"> Postal code: </label>
+        <br>
+        <input type="text" placeholder="75001" id="postalcode" maxlength="16" required>
+        <br>
+        <label for="city"> City : </label>
+        <br>
+        <input type="text" placeholder="Paris" id="city" required>
+        <br>
+        <label for="country"> Country : </label>
+        <br>
+        <input type="text" placeholder="France" id="country" required>
+        <br>
+        <label for="cardNumber"> Card Number : </label>
+        <br>
+        <input type="text" placeholder="1234123412341234" id="cardNumber" maxlength="16" required>
+        <br>
+        <label for="cvc"> CVC : </label>
+        <br>
+        <input type="text" placeholder="CVC" name="cvc" id="cvc" placeholder="123" maxlength="3" required>
+        <br>
+        <label for="Month"> Month :</label>
+        <br>
+        <input type="text" placeholder="mm" id="month" placeholder="08" maxlength="2" required>
+        <br>
+        <label for="year"> Year : </label>
+        <br>
+        <input type="text" placeholder="aaaa" id="year" aria-placeholder="1234" maxlength="4" required>
+        <br>
+        <label for=""> Cardholder name : </label>
+        <br>
+        <input type="text" placeholder="J. smith" id="name" required>
+        <br>
+        <label for=""> Webhook :</label>
+        <br>
+        <input type="text" placeholder="Discord"  id="discord">
+        <input type="button" value="Save" name="save" id="save">
+      </form>
+      </div>
+
+      <!-- Courir  -->
+
+      <!-- Rounded switch -->
+      <div id="courir">
+        <label  for=""> Random : </label>
+        <br>
+        <label class="switch">
+          <input type="checkbox" id="courir-checkbox">
+          <span class="slider round"></span>
+        </label>
+        <br>
+        <label for="Men size">Size :</label>
+        <br>
+        <select name="size" id="size">
+          <option value="35.5">35</option>
+          <option value="36">36</option>
+          <option value="36,5">36.5</option>
+          <option value="37">37</option>
+          <option value="37,5">37</option>
+          <option value="38">38</option>
+          <option value="38,5">38.5</option>
+          <option value="39">39</option>
+          <option value="39,5">39.5</option>
+          <option value="40">40</option>
+          <option value="40,5">40.5</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="42,5">42.5</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+          <option value="44,5">44.5</option>
+          <option value="45">45</option>
+          <option value="45,5">45.5</option>
+          <option value="46">46</option>
+          <option value="47">47</option>
+          <option value="47,5">47.5</option>
+          <option value="48">48</option>
+          <option value="48,5">48.5</option>
+        </select>
+      <!-- /  -->
+    </div>
+
+      <!-- Solebox -->
+
+      <!-- Rounded switch -->
+      <div id="solebox">
+        <label for=""> Normal mode : </label>
+        <br>
+        <label class="switch">
+          <input type="checkbox" id="sbx-normalmode">
+          <span class="slider round"></span>
+        </label>
+        <br>
+        <label for=""> Fast mode : </label>
+        <br>
+        <label class="switch">
+          <input type="checkbox" id="sbx-fastmode">
+          <span class="slider round"></span>
+        </label>
+        <br>
+        <label for="Men size">Size :</label>
+        <br>
+        <select name="size" id="sbx_size">
+          <option value="35.5">35</option>
+          <option value="36">36</option>
+          <option value="36,5">36.5</option>
+          <option value="37">37</option>
+          <option value="37,5">37</option>
+          <option value="38">38</option>
+          <option value="38,5">38.5</option>
+          <option value="39">39</option>
+          <option value="39,5">39.5</option>
+          <option value="40">40</option>
+          <option value="40,5">40.5</option>
+          <option value="41">41</option>
+          <option value="42">42</option>
+          <option value="42,5">42.5</option>
+          <option value="43">43</option>
+          <option value="44">44</option>
+          <option value="44,5">44.5</option>
+          <option value="45">45</option>
+          <option value="45,5">45.5</option>
+          <option value="46">46</option>
+          <option value="47">47</option>
+          <option value="47,5">47.5</option>
+          <option value="48">48</option>
+          <option value="48,5">48.5</option>
+        </select>
+      <!-- /  -->
+    </div>
+    <script type="text/javascript" src="./data.js"></script>
+  </body>
+</html>
