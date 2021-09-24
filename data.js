@@ -1,27 +1,139 @@
-var firstname = document.getElementById("firstname");
-var lastname = document.getElementById("lastname");
-var address = document.getElementById("address");
-var postalcode = document.getElementById("postalcode");
-var city = document.getElementById("city");
-var country = document.getElementById("country");
-var cardNumber = document.getElementById("cardNumber");
-var cvc = document.getElementById("cvc");
-var month = document.getElementById("month");
-var year = document.getElementById("year");
-var placeholder = document.getElementById("name");
-var webhook = document.getElementById("discord");
-var mensize = document.getElementById("size");
-var sbx_size = document.getElementById("sbx_size");
-var checked;
-var navprofile = document.getElementById('nav-profile');
-var navcourir = document.getElementById('nav-courir');
-var navsolebox = document.getElementById('nav-solebox');
-var navsnipes = document.getElementById('nav-snipes');
-var blockprofile = document.getElementById('profile');
-var blocksolebox = document.getElementById('solebox');
-var blockcourir = document.getElementById('courir');
-var blocksnipes = document.getElementById('snipes');
+!function () {
+    function detectDevTool(allow) {
+        if (isNaN(+allow)) allow = 100;
+        var start = +new Date();
+        debugger;
+        var end = +new Date();
+        if (isNaN(start) || isNaN(end) || end - start > allow) {
+            alert('DEVTOOLS detected. all operations will be terminated.');
+            document.write('DEVTOOLS detected.');
+        }
+    }
+    if (window.attachEvent) {
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            detectDevTool();
+            window.attachEvent('onresize', detectDevTool);
+            window.attachEvent('onmousemove', detectDevTool);
+            window.attachEvent('onfocus', detectDevTool);
+            window.attachEvent('onblur', detectDevTool);
+        } else {
+            setTimeout(argument.callee, 0);
+        }
+    } else {
+        window.addEventListener('load', detectDevTool);
+        window.addEventListener('resize', detectDevTool);
+        window.addEventListener('mousemove', detectDevTool);
+        window.addEventListener('focus', detectDevTool);
+        window.addEventListener('blur', detectDevTool);
+    }
+}();
 
+let firstname = document.getElementById("firstname");
+let lastname = document.getElementById("lastname");
+let address = document.getElementById("address");
+let postalcode = document.getElementById("postalcode");
+let city = document.getElementById("city");
+let country = document.getElementById("country");
+let cardNumber = document.getElementById("cardNumber");
+let cvc = document.getElementById("cvc");
+let month = document.getElementById("month");
+let year = document.getElementById("year");
+let placeholder = document.getElementById("name");
+let webhook = document.getElementById("discord");
+let mensize = document.getElementById("size");
+let sbx_size = document.getElementById("sbx_size");
+let checked;
+let navprofile = document.getElementById('nav-profile');
+let navcourir = document.getElementById('nav-courir');
+let navsolebox = document.getElementById('nav-solebox');
+let navsnipes = document.getElementById('nav-snipes');
+let blockprofile = document.getElementById('profile');
+let blocksolebox = document.getElementById('solebox');
+let blockcourir = document.getElementById('courir');
+let blocksnipes = document.getElementById('snipes');
+let pageprofile = document.getElementById("page-profile");
+let auth = document.getElementById("auth");
+let checklicence = document.getElementById("btn-key")
+let key = document.getElementById("key");
+
+// AUTHENTIFICATION
+
+// selecting dom element
+const textInput = document.querySelector("#inputPart");
+const textOutput = document.querySelector("#showOutput");
+const btn = document.querySelector("#submitInput");
+
+// selecting loading div
+const loader = document.querySelector("#loading");
+
+// showing loading
+function displayLoading() {
+    loader.classList.add("display");
+    // to stop loading after some time
+    setTimeout(() => {
+        loader.classList.remove("display");
+    }, 5000);
+}
+
+// hiding loading 
+function hideLoading() {
+    loader.classList.remove("display");
+}
+
+pageprofile.style.display = "none";
+
+let API_KEY = 'pk_6IVkMLe2ZUzhhB6bwMlO0E5as3RVbnPL'
+
+chrome.storage.sync.get(['auth'], function (result) {
+    if (result.auth !== undefined) {
+        auth.style.display = "none";
+        displayLoading();
+        fetch('https://api.metalabs.io/v4/licenses/' + result.auth, {
+            method: "GET",
+            headers: {
+                'Authorization': 'Bearer ' + API_KEY
+            },
+        })
+            .then(response => response.json())
+            .then((response) => {
+                displayLoading();
+                let status = JSON.stringify(response["status"]);
+                status = status.replace(/['"]+/g, '')
+                if (status == "active") {
+                    hideLoading();
+                    pageprofile.style.display = "block";
+                } else {
+                    auth.style.display = "block";
+                }
+            });
+    }
+});
+
+
+// check licence
+checklicence.addEventListener('click', function () {
+    fetch('https://api.metalabs.io/v4/licenses/' + key.value, {
+        method: "GET",
+        headers: {
+            'Authorization': 'Bearer ' + API_KEY
+        },
+    })
+        .then(response => response.json())
+        .then((response) => {
+            let status = JSON.stringify(response["status"]);
+            status = status.replace(/['"]+/g, '')
+            if (status == "active") {
+                pageprofile.style.display = "block";
+                auth.style.display = "none";
+                chrome.storage.sync.set({ auth: key.value });
+            } else {
+                alert("error");
+            }
+        });
+})
+
+
+// MENU
 blockcourir.style.display = "none";
 blocksolebox.style.display = "none";
 
@@ -59,8 +171,10 @@ navcourir.addEventListener('click', function () {
     });
 })
 
+// FORM USER
+
 document.getElementById('save').addEventListener('click', function () {
-    var user = []
+    let user = []
     user.push(firstname.value);
     user.push(lastname.value);
     user.push(address.value);
@@ -93,12 +207,12 @@ chrome.storage.sync.get(['key'], function (result) {
 });
 
 mensize.addEventListener('change', function () {
-    var mensize = document.getElementById("size").value;
+    let mensize = document.getElementById("size").value;
     chrome.storage.sync.set({ courir: mensize });
 });
 
 sbx_size.addEventListener('change', function () {
-    var sbx_size = sbx_size.value;
+    let sbx_size = sbx_size.value;
     chrome.storage.sync.set({ courir: sbx_size });
 });
 
@@ -120,8 +234,8 @@ chrome.storage.sync.get(['checkcourir'], function (result) {
 });
 
 
-var checkfastmode = document.getElementById("sbx-fastmode");
-var checknormalmode = document.getElementById("sbx-normalmode");
+let checkfastmode = document.getElementById("sbx-fastmode");
+let checknormalmode = document.getElementById("sbx-normalmode");
 
 // SOLEBOX CHECKBOX FAST MODE
 
@@ -161,3 +275,4 @@ chrome.storage.sync.get(['sbxnormalmode'], function (result) {
         checkfastmode.checked = false;
     }
 });
+

@@ -7,6 +7,11 @@ body{
   height: 380px;
 }
 
+#auth{
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
 .menu{
   display: flex;
   justify-content: space-between;
@@ -133,7 +138,38 @@ input:checked + .slider:before {
   padding-right: 30px;
 }
 
-
 select{
   margin-top: 10px;
+}
+
+
+/* Loader */
+
+#loading {
+  width: 2rem;
+  height: 2rem;
+  border: 5px solid #f3f3f3;
+  border-top: 6px solid #E2D297;
+  border-radius: 100%;
+  margin: auto;
+  display: none;
+  animation: spin 1s infinite linear;
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: 0;
+  bottom: 0;
+}
+
+#loading.display {
+  display: block;
+}
+
+@keyframes spin {
+  from {
+      transform: rotate(0deg);
+  }
+  to {
+      transform: rotate(360deg);
+  }
 }

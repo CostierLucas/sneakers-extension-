@@ -1,9 +1,3 @@
-chrome.runtime.onInstalled.addListener(() => {
-    chrome.scripting.executeScript({
-        file: 'data.js',
-    });
-});
-
 chrome.runtime.onMessage.addListener(function (message, sender) {
     if (message.sendBack) {
         chrome.tabs.sendMessage(sender.tab.id, message.data);
@@ -14,4 +8,6 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
     }
 });
 
-
+chrome.scripting.executeScript({
+    files: ['data.js'],
+});

@@ -4,77 +4,90 @@
     <link rel="stylesheet" href="style.css">
   </head>
   <body>
-    <div class="menu">
-      <div id="nav-profile" class="active">
-        <a href="#"> profile</a>
-      </div>
-      <div id="nav-courir">
-        <a href="#"> Courir</a>
-      </div>
-      <div id="nav-solebox">
-        <a href="#"> Solebox</a>
-      </div>
-      <div id="nav-snipes" class="invailable">
-        <a href="#"> Snipes</a>
-      </div>
-      <div id="nav-zalando" class="invailable">
-        <a href="#"> Zalando</a>
-      </div>
-    </div>
-  
-    <div id="user" id="check">
-      <form id="profile" action="">
-        <label for="firstname"> First name : </label>
-        <br>
-        <input type="text" id="firstname" required>
-        <br>
-        <label for="lastname"> Last name : </label>
-        <br>
-        <input type="text" id="lastname" required>
-        <br>
-        <label for="Adress"> Address : </label>
-        <br>
-        <input type="text" placeholder="Street" id="address" required>
-        <br>
-        <label for="postalcode"> Postal code: </label>
-        <br>
-        <input type="text" placeholder="75001" id="postalcode" maxlength="16" required>
-        <br>
-        <label for="city"> City : </label>
-        <br>
-        <input type="text" placeholder="Paris" id="city" required>
-        <br>
-        <label for="country"> Country : </label>
-        <br>
-        <input type="text" placeholder="France" id="country" required>
-        <br>
-        <label for="cardNumber"> Card Number : </label>
-        <br>
-        <input type="text" placeholder="1234123412341234" id="cardNumber" maxlength="16" required>
-        <br>
-        <label for="cvc"> CVC : </label>
-        <br>
-        <input type="text" placeholder="CVC" name="cvc" id="cvc" placeholder="123" maxlength="3" required>
-        <br>
-        <label for="Month"> Month :</label>
-        <br>
-        <input type="text" placeholder="mm" id="month" placeholder="08" maxlength="2" required>
-        <br>
-        <label for="year"> Year : </label>
-        <br>
-        <input type="text" placeholder="aaaa" id="year" aria-placeholder="1234" maxlength="4" required>
-        <br>
-        <label for=""> Cardholder name : </label>
-        <br>
-        <input type="text" placeholder="J. smith" id="name" required>
-        <br>
-        <label for=""> Webhook :</label>
-        <br>
-        <input type="text" placeholder="Discord"  id="discord">
-        <input type="button" value="Save" name="save" id="save">
+
+    <div id="loading"></div>
+    
+    <div id="auth">
+      <form action="">
+        <label for="">Licence key : </label>
+        <input type="text" name="key" id="key"> 
+        <input type="button" value="submit" name="btn-key" id="btn-key">
       </form>
+    </div>
+
+    <div id="page-profile">
+      <div class="menu">
+        <div id="nav-profile" class="active">
+          <a href="#"> profile</a>
+        </div>
+        <div id="nav-courir">
+          <a href="#"> Courir</a>
+        </div>
+        <div id="nav-solebox">
+          <a href="#"> Solebox</a>
+        </div>
+        <div id="nav-snipes" class="invailable">
+          <a href="#"> Snipes</a>
+        </div>
+        <div id="nav-zalando" class="invailable">
+          <a href="#"> Zalando</a>
+        </div>
       </div>
 
+      <div id="user" id="check">
+        <form id="profile" action="">
+          <label for="firstname"> First name : </label>
+          <br>
+          <input type="text" id="firstname" required>
+          <br>
+          <label for="lastname"> Last name : </label>
+          <br>
+          <input type="text" id="lastname" required>
+          <br>
+          <label for="Adress"> Address : </label>
+          <br>
+          <input type="text" placeholder="Street" id="address" required>
+          <br>
+          <label for="postalcode"> Postal code: </label>
+          <br>
+          <input type="text" placeholder="75001" id="postalcode" maxlength="16" required>
+          <br>
+          <label for="city"> City : </label>
+          <br>
+          <input type="text" placeholder="Paris" id="city" required>
+          <br>
+          <label for="country"> Country : </label>
+          <br>
+          <input type="text" placeholder="France" id="country" required>
+          <br>
+          <label for="cardNumber"> Card Number : </label>
+          <br>
+          <input type="text" placeholder="1234123412341234" id="cardNumber" maxlength="16" required>
+          <br>
+          <label for="cvc"> CVC : </label>
+          <br>
+          <input type="text" placeholder="CVC" name="cvc" id="cvc" placeholder="123" maxlength="3" required>
+          <br>
+          <label for="Month"> Month :</label>
+          <br>
+          <input type="text" placeholder="mm" id="month" placeholder="08" maxlength="2" required>
+          <br>
+          <label for="year"> Year : </label>
+          <br>
+          <input type="text" placeholder="aaaa" id="year" aria-placeholder="1234" maxlength="4" required>
+          <br>
+          <label for=""> Cardholder name : </label>
+          <br>
+          <input type="text" placeholder="J. smith" id="name" required>
+          <br>
+          <label for=""> Webhook :</label>
+          <br>
+          <input type="text" placeholder="Discord"  id="discord">
+          <input type="button" value="Save" name="save" id="save">
+        </form>
+        </div>
+    </div>
+     
       <!-- Courir  -->
 
       <!-- Rounded switch -->
