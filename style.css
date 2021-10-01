@@ -1,16 +1,24 @@
+* {
+  box-sizing: border-box;
+  font-family: 'Roboto', sans-serif;
+} 
+
 body{
   background-color: black;
   color: white;
   padding: 0;
   margin: 0;
   width: 350px;
-  height: 380px;
+  height: 100px;
 }
 
+/* AUTHENTIFICATION */
+
 #auth{
-  padding-left: 20px;
-  padding-right: 20px;
+  padding: 20px;
 }
+
+/* MENU */
 
 .menu{
   display: flex;
@@ -31,6 +39,7 @@ body{
 .menu a{
   text-decoration: none;
   color: black;
+  font-weight: medium;
 }
 
 .active{
@@ -45,6 +54,8 @@ body{
   background-color: grey;
 }
 
+/* USER FORM  */
+
 #user{
   padding: 20px;
 }
@@ -54,17 +65,32 @@ select{
 }
 
 input[type="text"]{
+  color: white;
+  background-color: #333533;
+  border: 0;
+  border-bottom: 1px solid white;
+  width: 100%;
   margin-top: 5px;
   margin-bottom: 5px;
-  width: 100%;
+  padding: 4px;
 }
 
-input[type="button"]{
-  width: 100%;
+input[type="text"]::placeholder{
+  color: #848684;
+}
+
+button{
+  width: 100% !important;
   margin-top: 10px;
   text-transform: uppercase;
   font-weight: bold;
   cursor: pointer;
+  background-color: white;
+  border:none;
+  padding: 3px;
+  display:block;
+  text-align: center;
+  font-weight: medium;
 }
 
 .switch {
@@ -140,6 +166,7 @@ input:checked + .slider:before {
 
 select{
   margin-top: 10px;
+  margin-bottom: 20px;
 }
 
 

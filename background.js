@@ -7,7 +7,3 @@ chrome.runtime.onMessage.addListener(function (message, sender) {
         });
     }
 });
-
-chrome.scripting.executeScript({
-    files: ['data.js'],
-});

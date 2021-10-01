@@ -1,7 +1,7 @@
 {
     "name": "BabaScript",
-    "description": "Build an Extension!",
-    "version": "1.0",
+    "description": "Automatisation de tâches sur divers sites de vente de sneakers. #BabaFinder",
+    "version": "0.1",
     "manifest_version": 3,
     "background": {
         "service_worker": "background.js"
@@ -11,8 +11,7 @@
         "tabs",
         "webRequest",
         "activeTab",
-        "scripting",
-        "webRequest"
+        "scripting"
     ],
     "content_scripts": [
         {
@@ -24,21 +23,32 @@
             ],
             "run_at": "document_start",
             "all_frames": true
+        },
+        {
+            "matches": [
+                "https://www.courir.com/*",
+                "<all_urls>"
+            ],
+            "js": [
+                "modules/courir.js",
+                "modules/solebox.js"
+            ],
+            "run_at": "document_start",
+            "all_frames": true
         }
     ],
     "action": {
         "default_popup": "popup.html",
         "default_icon": {
-            "16": "/images/icon.png",
-            "32": "/images/icon.png",
-            "48": "/images/icon.png",
-            "128": "/images/icon.png"
+            "16": "images/icon.png",
+            "48": "images/icon.png",
+            "128": "images/icon.png"
         },
         "icons": {
-            "16": "/images/icon.png",
-            "32": "/images/icon.png",
-            "48": "/images/icon.png",
-            "128": "/images/icon.png"
+            "16": "images/icon.png",
+            "32": "images/icon.png",
+            "48": "images/icon.png",
+            "128": "images/icon.png"
         }
     }
 }

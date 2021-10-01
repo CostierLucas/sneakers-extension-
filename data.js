@@ -1,32 +1,32 @@
-!function () {
-    function detectDevTool(allow) {
-        if (isNaN(+allow)) allow = 100;
-        var start = +new Date();
-        debugger;
-        var end = +new Date();
-        if (isNaN(start) || isNaN(end) || end - start > allow) {
-            alert('DEVTOOLS detected. all operations will be terminated.');
-            document.write('DEVTOOLS detected.');
-        }
-    }
-    if (window.attachEvent) {
-        if (document.readyState === "complete" || document.readyState === "interactive") {
-            detectDevTool();
-            window.attachEvent('onresize', detectDevTool);
-            window.attachEvent('onmousemove', detectDevTool);
-            window.attachEvent('onfocus', detectDevTool);
-            window.attachEvent('onblur', detectDevTool);
-        } else {
-            setTimeout(argument.callee, 0);
-        }
-    } else {
-        window.addEventListener('load', detectDevTool);
-        window.addEventListener('resize', detectDevTool);
-        window.addEventListener('mousemove', detectDevTool);
-        window.addEventListener('focus', detectDevTool);
-        window.addEventListener('blur', detectDevTool);
-    }
-}();
+// !function () {
+//     function detectDevTool(allow) {
+//         if (isNaN(+allow)) allow = 100;
+//         var start = +new Date();
+//         debugger;
+//         var end = +new Date();
+//         if (isNaN(start) || isNaN(end) || end - start > allow) {
+//             alert('DEVTOOLS detected. all operations will be terminated.');
+//             document.write('DEVTOOLS detected.');
+//         }
+//     }
+//     if (window.attachEvent) {
+//         if (document.readyState === "complete" || document.readyState === "interactive") {
+//             detectDevTool();
+//             window.attachEvent('onresize', detectDevTool);
+//             window.attachEvent('onmousemove', detectDevTool);
+//             window.attachEvent('onfocus', detectDevTool);
+//             window.attachEvent('onblur', detectDevTool);
+//         } else {
+//             setTimeout(argument.callee, 0);
+//         }
+//     } else {
+//         window.addEventListener('load', detectDevTool);
+//         window.addEventListener('resize', detectDevTool);
+//         window.addEventListener('mousemove', detectDevTool);
+//         window.addEventListener('focus', detectDevTool);
+//         window.addEventListener('blur', detectDevTool);
+//     }
+// }();
 
 let firstname = document.getElementById("firstname");
 let lastname = document.getElementById("lastname");
@@ -53,7 +53,7 @@ let blockcourir = document.getElementById('courir');
 let blocksnipes = document.getElementById('snipes');
 let pageprofile = document.getElementById("page-profile");
 let auth = document.getElementById("auth");
-let checklicence = document.getElementById("btn-key")
+let checklicence = document.getElementById("btn-key");
 let key = document.getElementById("key");
 
 // AUTHENTIFICATION
@@ -118,16 +118,21 @@ checklicence.addEventListener('click', function () {
             'Authorization': 'Bearer ' + API_KEY
         },
     })
-        .then(response => response.json())
-        .then((response) => {
-            let status = JSON.stringify(response["status"]);
-            status = status.replace(/['"]+/g, '')
-            if (status == "active") {
-                pageprofile.style.display = "block";
-                auth.style.display = "none";
-                chrome.storage.sync.set({ auth: key.value });
-            } else {
-                alert("error");
+        .then(r => r.json().then(data => ({ status: r.status, body: data })))
+        .then(obj => {
+            if (obj.status == 404 || obj.status == 401) {
+                alert("Key invalid");
+            } else if (obj.status == 200) {
+                let status = JSON.stringify(obj.body.status);
+                status = status.replace(/['"]+/g, '')
+                if (status == "active") {
+                    document.height = "380px";
+                    pageprofile.style.display = "block";
+                    auth.style.display = "none";
+                    chrome.storage.sync.set({ auth: key.value });
+                } else {
+                    alert("Key invalide");
+                }
             }
         });
 })
@@ -154,8 +159,8 @@ navsolebox.addEventListener('click', function () {
     blockprofile.style.display = "none";
     blockcourir.style.display = "none";
     blocksolebox.style.display = "block";
-    chrome.storage.sync.get(['courir'], function (result) {
-        mensize.value = result.courir;
+    chrome.storage.sync.get(['solebox'], function (result) {
+        sbx_size.value = result.solebox;
     });
 })
 
@@ -192,18 +197,20 @@ document.getElementById('save').addEventListener('click', function () {
 })
 
 chrome.storage.sync.get(['key'], function (result) {
-    firstname.value = result.key[0];
-    lastname.value = result.key[1];
-    address.value = result.key[2];
-    postalcode.value = result.key[3];
-    city.value = result.key[4];
-    country.value = result.key[5];
-    cardNumber.value = result.key[6];
-    cvc.value = result.key[7];
-    month.value = result.key[8];
-    year.value = result.key[9];
-    placeholder.value = result.key[10];
-    discord.value = result.key[11];
+    if (result.key !== undefined) {
+        firstname.value = result.key[0];
+        lastname.value = result.key[1];
+        address.value = result.key[2];
+        postalcode.value = result.key[3];
+        city.value = result.key[4];
+        country.value = result.key[5];
+        cardNumber.value = result.key[6];
+        cvc.value = result.key[7];
+        month.value = result.key[8];
+        year.value = result.key[9];
+        placeholder.value = result.key[10];
+        discord.value = result.key[11];
+    }
 });
 
 mensize.addEventListener('change', function () {
@@ -212,8 +219,9 @@ mensize.addEventListener('change', function () {
 });
 
 sbx_size.addEventListener('change', function () {
-    let sbx_size = sbx_size.value;
-    chrome.storage.sync.set({ courir: sbx_size });
+    let sbx_sizee = sbx_size.value;
+    chrome.storage.sync.set({ solebox: sbx_sizee });
+
 });
 
 
