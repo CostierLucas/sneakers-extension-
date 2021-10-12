@@ -1,6 +1,6 @@
 {
-    "name": "BabaScript",
-    "description": "Automatisation de tâches sur divers sites de vente de sneakers. #BabaFinder",
+    "name": "LucasScript",
+    "description": "Automation of tasks on various sneaker selling sites. Script by Lucas. Github : https://github.com/CostierLucas/ ",
     "version": "0.1",
     "manifest_version": 3,
     "background": {

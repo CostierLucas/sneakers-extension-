@@ -1,32 +1,32 @@
-// !function () {
-//     function detectDevTool(allow) {
-//         if (isNaN(+allow)) allow = 100;
-//         var start = +new Date();
-//         debugger;
-//         var end = +new Date();
-//         if (isNaN(start) || isNaN(end) || end - start > allow) {
-//             alert('DEVTOOLS detected. all operations will be terminated.');
-//             document.write('DEVTOOLS detected.');
-//         }
-//     }
-//     if (window.attachEvent) {
-//         if (document.readyState === "complete" || document.readyState === "interactive") {
-//             detectDevTool();
-//             window.attachEvent('onresize', detectDevTool);
-//             window.attachEvent('onmousemove', detectDevTool);
-//             window.attachEvent('onfocus', detectDevTool);
-//             window.attachEvent('onblur', detectDevTool);
-//         } else {
-//             setTimeout(argument.callee, 0);
-//         }
-//     } else {
-//         window.addEventListener('load', detectDevTool);
-//         window.addEventListener('resize', detectDevTool);
-//         window.addEventListener('mousemove', detectDevTool);
-//         window.addEventListener('focus', detectDevTool);
-//         window.addEventListener('blur', detectDevTool);
-//     }
-// }();
+!function () {
+    function detectDevTool(allow) {
+        if (isNaN(+allow)) allow = 100;
+        var start = +new Date();
+        debugger;
+        var end = +new Date();
+        if (isNaN(start) || isNaN(end) || end - start > allow) {
+            alert('DEVTOOLS detected. all operations will be terminated.');
+            document.write('DEVTOOLS detected.');
+        }
+    }
+    if (window.attachEvent) {
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            detectDevTool();
+            window.attachEvent('onresize', detectDevTool);
+            window.attachEvent('onmousemove', detectDevTool);
+            window.attachEvent('onfocus', detectDevTool);
+            window.attachEvent('onblur', detectDevTool);
+        } else {
+            setTimeout(argument.callee, 0);
+        }
+    } else {
+        window.addEventListener('load', detectDevTool);
+        window.addEventListener('resize', detectDevTool);
+        window.addEventListener('mousemove', detectDevTool);
+        window.addEventListener('focus', detectDevTool);
+        window.addEventListener('blur', detectDevTool);
+    }
+}();
 
 let firstname = document.getElementById("firstname");
 let lastname = document.getElementById("lastname");
@@ -55,87 +55,6 @@ let pageprofile = document.getElementById("page-profile");
 let auth = document.getElementById("auth");
 let checklicence = document.getElementById("btn-key");
 let key = document.getElementById("key");
-
-// AUTHENTIFICATION
-
-// selecting dom element
-const textInput = document.querySelector("#inputPart");
-const textOutput = document.querySelector("#showOutput");
-const btn = document.querySelector("#submitInput");
-
-// selecting loading div
-const loader = document.querySelector("#loading");
-
-// showing loading
-function displayLoading() {
-    loader.classList.add("display");
-    // to stop loading after some time
-    setTimeout(() => {
-        loader.classList.remove("display");
-    }, 5000);
-}
-
-// hiding loading 
-function hideLoading() {
-    loader.classList.remove("display");
-}
-
-pageprofile.style.display = "none";
-
-let API_KEY = 'pk_6IVkMLe2ZUzhhB6bwMlO0E5as3RVbnPL'
-
-chrome.storage.sync.get(['auth'], function (result) {
-    if (result.auth !== undefined) {
-        auth.style.display = "none";
-        displayLoading();
-        fetch('https://api.metalabs.io/v4/licenses/' + result.auth, {
-            method: "GET",
-            headers: {
-                'Authorization': 'Bearer ' + API_KEY
-            },
-        })
-            .then(response => response.json())
-            .then((response) => {
-                displayLoading();
-                let status = JSON.stringify(response["status"]);
-                status = status.replace(/['"]+/g, '')
-                if (status == "active") {
-                    hideLoading();
-                    pageprofile.style.display = "block";
-                } else {
-                    auth.style.display = "block";
-                }
-            });
-    }
-});
-
-
-// check licence
-checklicence.addEventListener('click', function () {
-    fetch('https://api.metalabs.io/v4/licenses/' + key.value, {
-        method: "GET",
-        headers: {
-            'Authorization': 'Bearer ' + API_KEY
-        },
-    })
-        .then(r => r.json().then(data => ({ status: r.status, body: data })))
-        .then(obj => {
-            if (obj.status == 404 || obj.status == 401) {
-                alert("Key invalid");
-            } else if (obj.status == 200) {
-                let status = JSON.stringify(obj.body.status);
-                status = status.replace(/['"]+/g, '')
-                if (status == "active") {
-                    document.height = "380px";
-                    pageprofile.style.display = "block";
-                    auth.style.display = "none";
-                    chrome.storage.sync.set({ auth: key.value });
-                } else {
-                    alert("Key invalide");
-                }
-            }
-        });
-})
 
 
 // MENU

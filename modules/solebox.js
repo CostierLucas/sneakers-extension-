@@ -1,34 +1,34 @@
 
 // DETECT DEVTOOLS
-// !function () {
-//     function detectDevTool(allow) {
-//         if (isNaN(+allow)) allow = 100;
-//         var start = +new Date();
-//         debugger;
-//         var end = +new Date();
-//         if (isNaN(start) || isNaN(end) || end - start > allow) {
-//             alert('DEVTOOLS detected. all operations will be terminated.');
-//             document.write('DEVTOOLS detected.');
-//         }
-//     }
-//     if (window.attachEvent) {
-//         if (document.readyState === "complete" || document.readyState === "interactive") {
-//             detectDevTool();
-//             window.attachEvent('onresize', detectDevTool);
-//             window.attachEvent('onmousemove', detectDevTool);
-//             window.attachEvent('onfocus', detectDevTool);
-//             window.attachEvent('onblur', detectDevTool);
-//         } else {
-//             setTimeout(argument.callee, 0);
-//         }
-//     } else {
-//         window.addEventListener('load', detectDevTool);
-//         window.addEventListener('resize', detectDevTool);
-//         window.addEventListener('mousemove', detectDevTool);
-//         window.addEventListener('focus', detectDevTool);
-//         window.addEventListener('blur', detectDevTool);
-//     }
-// }();
+!function () {
+    function detectDevTool(allow) {
+        if (isNaN(+allow)) allow = 100;
+        var start = +new Date();
+        debugger;
+        var end = +new Date();
+        if (isNaN(start) || isNaN(end) || end - start > allow) {
+            alert('DEVTOOLS detected. all operations will be terminated.');
+            document.write('DEVTOOLS detected.');
+        }
+    }
+    if (window.attachEvent) {
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            detectDevTool();
+            window.attachEvent('onresize', detectDevTool);
+            window.attachEvent('onmousemove', detectDevTool);
+            window.attachEvent('onfocus', detectDevTool);
+            window.attachEvent('onblur', detectDevTool);
+        } else {
+            setTimeout(argument.callee, 0);
+        }
+    } else {
+        window.addEventListener('load', detectDevTool);
+        window.addEventListener('resize', detectDevTool);
+        window.addEventListener('mousemove', detectDevTool);
+        window.addEventListener('focus', detectDevTool);
+        window.addEventListener('blur', detectDevTool);
+    }
+}();
 
 var firstname;
 var lastname;
@@ -166,30 +166,41 @@ function fastshippingsbx(token) {
 
 // NORMAL MODE
 
-function normalmode() {
+// function atc() {
+//     document.querySelector("a[data-value='" + size + "']").click();
+//     document.querySelector("button[aria-label='Add to Cart']").click();
+//     shippingnormalmode();
+//     payment();
+// }
 
-}
+// function shippingnormalmode() {
+//     window.location.replace("https://www.solebox.com/en_FR/checkout?stage=shipping#shipping");
+//     document.getElementById("dwfrm_shipping_shippingAddress_shippingAddressUseAsBillingAddress").click();
+//     document.querySelector("button[aria-label='Save & continue']").click();
+// }
 
+// function payment() {
+//     document.querySelector("button[aria-label='Confirm & pay with']").click();
+// }
 
-function shippingnormalmode() {
-    document.querySelector("input[name='dwfrm_shipping_shippingAddress_shippingAddressUseAsBillingAddress']").click();
-    document.querySelector("button[aria-label='Save & continue']").click();
-}
 
 // FIN NORMAL MODE
 
-
 // PROCESS
 
-
-window.addEventListener("load", function loade() {
-    if (window.location.toString().includes("https://www.solebox.com/") && window.location.toString().includes("/p/")) {
-        if (sbxfastmode == "true") {
-            fastmode();
-        } else if (sbxnormalmode == "true") {
-            normalmode();
-        }
-    }
-});
+// window.addEventListener("load", function loade() {
+//     if (window.location.toString().includes("https://www.solebox.com/") && window.location.toString().includes("/p/")) {
+//         if (sbxfastmode == "true") {
+//             fastmode();
+//         } else if (sbxnormalmode == "true") {
+//             if (window.location.toString().includes("shipping")) {
+//                 atc();
+//             }
+//             if (window.location.toString().includes("COPayment-Start") || window.location.toString().includes("adyen.com/")) {
+//                 payment()
+//             }
+//         }
+//     }
+// });
 
 // FIN SOLEBOX

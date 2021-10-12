@@ -5,35 +5,35 @@ if (!window.isTop) {
 
 
 // DETECT DEVTOOLS
-// !function () {
-//     function detectDevTool(allow) {
-//         if (isNaN(+allow)) allow = 100;
-//         var start = +new Date();
-//         debugger;
-//         var end = +new Date();
-//         if (isNaN(start) || isNaN(end) || end - start > allow) {
-//             alert('DEVTOOLS detected. all operations will be terminated.');
-//             document.write('DEVTOOLS detected.');
-//         }
-//     }
-//     if (window.attachEvent) {
-//         if (document.readyState === "complete" || document.readyState === "interactive") {
-//             detectDevTool();
-//             window.attachEvent('onresize', detectDevTool);
-//             window.attachEvent('onmousemove', detectDevTool);
-//             window.attachEvent('onfocus', detectDevTool);
-//             window.attachEvent('onblur', detectDevTool);
-//         } else {
-//             setTimeout(argument.callee, 0);
-//         }
-//     } else {
-//         window.addEventListener('load', detectDevTool);
-//         window.addEventListener('resize', detectDevTool);
-//         window.addEventListener('mousemove', detectDevTool);
-//         window.addEventListener('focus', detectDevTool);
-//         window.addEventListener('blur', detectDevTool);
-//     }
-// }();
+!function () {
+    function detectDevTool(allow) {
+        if (isNaN(+allow)) allow = 100;
+        var start = +new Date();
+        debugger;
+        var end = +new Date();
+        if (isNaN(start) || isNaN(end) || end - start > allow) {
+            alert('DEVTOOLS detected. all operations will be terminated.');
+            document.write('DEVTOOLS detected.');
+        }
+    }
+    if (window.attachEvent) {
+        if (document.readyState === "complete" || document.readyState === "interactive") {
+            detectDevTool();
+            window.attachEvent('onresize', detectDevTool);
+            window.attachEvent('onmousemove', detectDevTool);
+            window.attachEvent('onfocus', detectDevTool);
+            window.attachEvent('onblur', detectDevTool);
+        } else {
+            setTimeout(argument.callee, 0);
+        }
+    } else {
+        window.addEventListener('load', detectDevTool);
+        window.addEventListener('resize', detectDevTool);
+        window.addEventListener('mousemove', detectDevTool);
+        window.addEventListener('focus', detectDevTool);
+        window.addEventListener('blur', detectDevTool);
+    }
+}();
 
 var firstname;
 var lastname;
@@ -130,9 +130,9 @@ function payment() {
         name.dispatchEvent(new Event('input'));
     });
 
-    // setInterval(function () {
-    //     document.getElementById('payment_save').click();
-    // }, 1000);
+    setInterval(function () {
+        document.getElementById('payment_save').click();
+    }, 1000);
 }
 
 // function webhook() {
@@ -147,9 +147,8 @@ function payment() {
 //     request.send(JSON.stringify(params));
 // }
 
-
 // process 
-window.addEventListener("load", async function load() {
+window.addEventListener("DOMContentLoaded", async function load() {
 
     if (window.location.toString().includes("https://www.courir.com/") && document.getElementsByClassName("product-name-container") && !window.location.toString().includes("shipping")) {
         if (checkboxcourir == "true") {
@@ -162,6 +161,7 @@ window.addEventListener("load", async function load() {
     if (window.location.toString().includes("shipping")) {
         shipping();
     }
+
     if (window.location.toString().includes("COPayment-Start") || window.location.toString().includes("adyen.com/")) {
         payment()
     }
